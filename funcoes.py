@@ -41,6 +41,7 @@ def jogar_rodada(palavra, vidas):
     letras_acertadas = []
     letras_erradas = []
     saldo_final = 0
+    jogador = 0
 
     while vidas > 0 and "_ " in mostrar_palavra(palavra, letras_acertadas):
 
