@@ -16,6 +16,10 @@ def iniciar_jogo():
             jogador_num = estado_jogo['jogador_num']
             saldo_final = estado_jogo['saldo_final']
             print("Estado do jogo carregado.")
+            print(f"Você acertou: {letras_acertadas}")
+            print(f"Você tem: {vidas} vidas")
+            print(f"Jogador: {jogador_num}")
+
             return jogar_rodada(palavra, vidas, jogador_num)
         else:
           # Se o jogador não deseja carregar o jogo, inicie um novo jogo
