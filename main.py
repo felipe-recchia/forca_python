@@ -43,7 +43,7 @@ def iniciar_jogo():
     print("\nRanking dos Jogadores:")
     if resultados_jogadores:
       for i, (jogador, saldo_final) in enumerate(resultados_jogadores, start=1):
-        print(f"{i}. Jogador {jogador}: Saldo Final = {saldo_final}")
+        print(f"{i}. Jogador {jogador}: Pontuação Final = {saldo_final}")
     else:
       print("Nenhum jogador no ranking.")
 
