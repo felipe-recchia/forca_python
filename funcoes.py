@@ -1,6 +1,7 @@
 from ast import Return
 import random
 import os
+import pickle
 
 print("   ____      ")
 print("  /    |     ")
@@ -17,6 +18,10 @@ palavras = {
           }
 
 resultados_jogadores = []
+
+def iniciar_novo_jogo():
+    # Código para iniciar um novo jogo
+    pass
 
 # Função para sortear uma palavra
 def sortear_palavra(categoria):
@@ -37,12 +42,12 @@ def jogar_rodada(palavra, vidas, jogador_num):
     letras_acertadas = []
     letras_erradas = []
     saldo_final = 0
-    jogador = 0
+    jogador = jogador_num
 
     # Mostrar a palavra com espaços entre cada letra
     print(f"A palavra tem {len(palavra)} letras: {mostrar_palavra(palavra, letras_acertadas)}")
 
-    while vidas > 0 and "_ " in mostrar_palavra(palavra, letras_acertadas):
+    while vidas > 0 and "_" in mostrar_palavra(palavra, letras_acertadas):
         letra = input("\nDigite uma letra: ").lower()
 
         if letra in letras_acertadas + letras_erradas:
@@ -130,22 +135,45 @@ def jogar_rodada(palavra, vidas, jogador_num):
               print("\n*****************************************************************************")
 
 
+    # Verificar a condição de vitória
     if vidas > 0:
         print("Você venceu!")
-        print(f"Você acertou {len(letras_acertadas)} letras e ganhou um bonus de 10 por ter acertado a palavra")
+        print(f"Você acertou {len(letras_acertadas)} letras e ganhou um bônus de 10 por ter acertado a palavra")
         print(f"Saldo final {len(letras_acertadas) + 10}")
-        jogador_info = (jogador, saldo_final)  # Aqui estamos criando uma tupla com o jogador e o saldo final
-        resultados_jogadores.append(jogador_info) # Aqui estamos adicionando a tupla à lista de resultados
-
-
+        saldo_final = len(letras_acertadas) * 10 + vidas
+        jogador_info = (jogador, saldo_final)
+        resultados_jogadores.append(jogador_info)
     else:
         print(f"Você perdeu! A palavra era {palavra}")
         print(f"Você acertou {len(letras_acertadas)}")
-        jogador_info = (jogador, saldo_final)  # Aqui estamos criando uma tupla com o jogador e o saldo final
-        resultados_jogadores.append(jogador_info)  # Aqui estamos adicionando a tupla à lista de resultados
-
-
-     # Calcular o saldo final da rodada
-    saldo_final = len(letras_acertadas) + 10 if "_ " not in mostrar_palavra(palavra, letras_acertadas) else 0
-    saldo_final = len(letras_acertadas) * 10 + vidas
+        saldo_final = len(letras_acertadas) * 10 
+        jogador_info = (jogador, saldo_final)
+        resultados_jogadores.append(jogador_info)
+    
     return saldo_final
+
+def salvar_estado_jogo(palavra, letras_acertadas, vidas, jogador_num, saldo_final):
+    estado_jogo = {
+        "palavra": palavra,
+        "letras_acertadas": letras_acertadas,
+        "vidas": vidas,
+        "jogador_num": jogador_num,
+        "saldo_final": saldo_final
+       
+    }
+    with open("estado_jogo.pkl", "wb") as f:
+        pickle.dump(estado_jogo, f)
+
+def carregar_estado_jogo():
+   try:
+        print("Tentando carregar o estado do jogo...")
+        with open("estado_jogo.pkl", "rb") as f:
+            estado_jogo = pickle.load(f)
+        print("Estado do jogo carregado com sucesso!")
+        return estado_jogo
+   except FileNotFoundError:
+        print("Arquivo de estado do jogo não encontrado.")
+        return None
+   except Exception as e:
+        print(f"Erro ao carregar o estado do jogo: {e}")
+        return None
