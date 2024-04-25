@@ -74,8 +74,6 @@ def iniciar_novo_jogo():
         print("- " * 20)
 
         # Adiciona o número do jogador à lista de resultados
-        # jogador.append(jogador_num)
-
         resultados_jogadores.append((jogador_num, saldo_final_total))
 
         # Classificar os resultados por saldo final
