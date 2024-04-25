@@ -1,15 +1,16 @@
 from funcoes import *
 
+# Executa o jogo
 def iniciar_jogo():
     
     # Verificar se há um estado de jogo salvo
     estado_jogo = carregar_estado_jogo()
 
     if estado_jogo:
-        # Se houver um estado de jogo salvo, pergunte ao jogador se ele deseja carregar o jogo
+        # Se houver um arquivo de jogo salvo, pergunta ao jogador se ele deseja carregar o jogo
         carregar = input("Há um jogo salvo. Deseja carregar o jogo salvo? (s/n): ")
         if carregar.lower() == 's':
-            # Se o jogador deseja carregar o jogo, carregue o estado do jogo salvo
+            # Se o jogador escolher carregar o jogo, carrega o estado do jogo salvo
             palavra = estado_jogo['palavra']
             letras_acertadas = estado_jogo['letras_acertadas']
             vidas = estado_jogo['vidas']
@@ -22,10 +23,10 @@ def iniciar_jogo():
 
             return jogar_rodada(palavra, vidas, jogador_num)
         else:
-          # Se o jogador não deseja carregar o jogo, inicie um novo jogo
+          # Se o jogador não deseja carregar um jogo, inicia um novo jogo
           iniciar_novo_jogo()
     else:
-      # Se não houver um estado de jogo salvo, inicie um novo jogo
+      # Se não houver um estado de jogo salvo, inicia um novo jogo
       iniciar_novo_jogo()
 
 def iniciar_novo_jogo():
@@ -74,8 +75,6 @@ def iniciar_novo_jogo():
         print("- " * 20)
 
         # Adiciona o número do jogador à lista de resultados
-        # jogador.append(jogador_num)
-
         resultados_jogadores.append((jogador_num, saldo_final_total))
 
         # Classificar os resultados por saldo final

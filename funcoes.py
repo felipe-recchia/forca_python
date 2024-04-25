@@ -10,7 +10,7 @@ print(" |    /|\    ")
 print(" |    / \    ")
 print(" |________________________ JOGO DA FORCA______________________")
 
-    # Dicionário de palavras
+# Dicionário de palavras
 palavras = {
         '1': ["uva", "paz", "ovo", "ceu", "mae"],
         '2': ["computador", "hamburguer", "internauta", "hierarquia", "conjuntura"],
@@ -19,8 +19,7 @@ palavras = {
 
 resultados_jogadores = []
 
-def iniciar_novo_jogo():
-    # Código para iniciar um novo jogo
+def iniciar_novo_jogo(): # Código para iniciar um novo jogo
     pass
 
 # Função para sortear uma palavra
@@ -152,6 +151,7 @@ def jogar_rodada(palavra, vidas, jogador_num):
     
     return saldo_final
 
+# Função para salvar o estado do jogo
 def salvar_estado_jogo(palavra, letras_acertadas, vidas, jogador_num, saldo_final):
     estado_jogo = {
         "palavra": palavra,
@@ -164,6 +164,7 @@ def salvar_estado_jogo(palavra, letras_acertadas, vidas, jogador_num, saldo_fina
     with open("estado_jogo.pkl", "wb") as f:
         pickle.dump(estado_jogo, f)
 
+# Função para carregar o estado do jogo
 def carregar_estado_jogo():
    try:
         print("Tentando carregar o estado do jogo...")
