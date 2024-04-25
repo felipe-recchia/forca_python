@@ -12,9 +12,9 @@ print(" |________________________ JOGO DA FORCA______________________")
 
     # Dicionário de palavras
 palavras = {
-        '1': ["uva", "gato", "leite", "ceu", "mesa"],
-        '2': ["computador", "hamburguer", "sushi", "macarrao", "bebedouro"],
-        '3': ["pleonasmo", "paquibaquigrafo", "constelação", "apocalipse"],
+        '1': ["uva", "paz", "ovo", "ceu", "mae"],
+        '2': ["computador", "hamburguer", "internauta", "hierarquia", "conjuntura"],
+        '3': ["compatibilidade", "paquibaquigrafo", "conscientizacao", "impermeabilizar"],
           }
 
 resultados_jogadores = []
